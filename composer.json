@@ -1,0 +1,30 @@
+{
+    "name": "likemusic/laravel-fillable-has-many",
+    "description": "Allows fill hasMany() relations by attributes without create them in database. Also adds `saveWithRelations()` model's method.",
+    "type": "library",
+    "require": {
+        "illuminate/database": "~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": " ^7.5.15 || ^8.4 || ^9.3.3",
+        "orchestra/testbench": "~4.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Valerij Ivashchenko",
+            "email": "likemusicdev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Likemusic\\LaravelFillableRelationsWithoutAutosave\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Likemusic\\LaravelFillableRelationsWithoutAutosave\\Tests\\": "tests"
+        }
+    }
+}
