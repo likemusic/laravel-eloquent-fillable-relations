@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites>
-  <testsuite name="/var/www/tests" tests="1" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="5.838586">
-    <testsuite name="Likemusic\LaravelFillableRelationsWithoutAutosave\Tests\MainDetailsTest" file="/var/www/tests/MainDetailsTest.php" tests="1" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="5.838586">
-      <testcase name="testNewMainWithDetails" class="Likemusic\LaravelFillableRelationsWithoutAutosave\Tests\MainDetailsTest" classname="Likemusic.LaravelFillableRelationsWithoutAutosave.Tests.MainDetailsTest" file="/var/www/tests/MainDetailsTest.php" line="10" assertions="5" time="5.838586"/>
-    </testsuite>
-  </testsuite>
-</testsuites>
