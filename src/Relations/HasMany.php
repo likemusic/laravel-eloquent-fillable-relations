@@ -5,14 +5,16 @@ namespace Likemusic\LaravelFillableRelationsWithoutAutosave\Relations;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany as BaseHasMany;
-use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\GetParentKeyByRefTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\SetAttributeByRefTrait;
 use function tap;
 
 
 class HasMany extends BaseHasMany
 {
-    use GetParentKeyByRefTrait;
+    public function & getParentKeyByRef()
+    {
+        return $this->parent->getAttributeValueByRef($this->localKey);
+    }
 
     /**
      * @param Model|SetAttributeByRefTrait $model
