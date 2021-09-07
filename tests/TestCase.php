@@ -13,11 +13,23 @@ abstract class TestCase extends Orchestra
     public function setUp(): void
     {
         parent::setUp();
-        $this->artisan('migrate:fresh', ['--database' => 'test']);
-        $this->beforeApplicationDestroyed(function () {
-            $this->artisan('migrate:rollback');
-        });
+
+//        if (!$this->requires()) {
+            $this->artisan('migrate:fresh', ['--database' => 'test']);
+            $this->beforeApplicationDestroyed(function () {
+                $this->artisan('migrate:rollback');
+            });
+//        }
     }
+
+//    public function tearDown(): void
+//    {
+//        if (!$this->requires()) {
+//            $this->artisan('migrate:rollback');
+//        }
+//
+//        parent::tearDown();
+//    }
 
     /**
      * Define environment setup.

@@ -4,11 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailsTable extends Migration
+class CreateOnersTable extends Migration
 {
+    const TABLE_NAME = 'oners';
+
     public function up()
     {
-        Schema::create('details', function (Blueprint $table) {
+        Schema::create(self::TABLE_NAME, function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
 
@@ -21,6 +23,6 @@ class CreateDetailsTable extends Migration
 
     public function down()
     {
-        Schema::drop('details');
+        Schema::drop(self::TABLE_NAME);
     }
 }

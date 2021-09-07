@@ -1,11 +1,11 @@
 <?php
 
-namespace Likemusic\LaravelFillableRelationsWithoutAutosave\Tests\Models;
+namespace Likemusic\LaravelFillableRelationsWithoutAutosave\Tests\Models\OneOrMany\One;
 
 use Illuminate\Database\Eloquent\Model;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\IsFillableRelationTrait;
 
-class Detail extends Model
+class Oner extends Model
 {
     use IsFillableRelationTrait;
 
