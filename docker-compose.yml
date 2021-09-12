@@ -19,7 +19,6 @@ services:
   composer:
     build:
       context: ./docker/composer
-    #      dockerfile: docker/php-cli-custom.docker
     working_dir: /var/www
     volumes:
       - ./:/var/www/
