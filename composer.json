@@ -1,6 +1,6 @@
 {
-    "name": "likemusic/laravel-fillable-has-many",
-    "description": "Allows fill hasMany() relations by attributes without create them in database. Also adds `saveWithRelations()` model's method.",
+    "name": "likemusic/laravel-eloquent-fillable-relations",
+    "description": "Allows automatically fill model's relations by attributes without create them in database. Also adds pushOrFail() model's method that save model with relations (like push()-method) in one transaction.",
     "type": "library",
     "require": {
         "illuminate/database": "~6.0"
