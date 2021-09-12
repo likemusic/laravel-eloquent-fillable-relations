@@ -3,19 +3,21 @@
 namespace Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait PushOrFailTrait
 {
     private $deletedRelations = [];
 
-    public function pushOrFail()
+    public function pushOrFail(): Model
     {
-//        return $this->getConnection()->transaction(function () {
+        return $this->getConnection()->transaction(function () {
             $this->saveOrFail();
             $this->syncRelations();
 
             return $this;
-//        });
+        });
     }
 
     private function syncRelations()
@@ -63,9 +65,6 @@ trait PushOrFailTrait
 
     }
 
-    /**
-     * @param $relationValue
-     */
     private function saveRelation(string $relationName, $relationValue): void
     {
         $this->beforeSaveRelation($relationName, $relationValue);
@@ -80,12 +79,12 @@ trait PushOrFailTrait
         $this->afterSaveRelation($relationName, $relationValue);
     }
 
-    protected function beforeSaveRelation(string $relationName, $models)
+    protected function beforeSaveRelation(string $relationName, $relationValue)
     {
 
     }
 
-    protected function afterSaveRelation(string $relationName, $models)
+    protected function afterSaveRelation(string $relationName, $relationValue)
     {
 
     }
@@ -99,7 +98,7 @@ trait PushOrFailTrait
                 continue;
             }
 
-            /** @var \Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\HasOneOrMany\HasMany $relation */
+            /** @var Relation $relation */
             $relation = $this->$relationName();
             $relation->getRelated()->destroy($relationIds);
         }
