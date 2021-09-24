@@ -6,7 +6,7 @@ use Likemusic\LaravelFillableRelationsWithoutAutosave\Tests\Models\OneOrMany\One
 
 class MainWithOnerTest extends TestCase
 {
-    public function testCreate()
+    public function testCreateByNew()
     {
         $onerAttributes = [
             'name' => 'Oner 1',
@@ -27,9 +27,29 @@ class MainWithOnerTest extends TestCase
         return $main;
     }
 
+    public function testCreateByCreateWithRelations()
+    {
+        $onerAttributes = [
+            'name' => 'Oner 1',
+        ];
+
+        $main = MainWithOner::createWithRelations([
+            'name' => 'Main With Oner',
+            'oner' => $onerAttributes
+        ]);
+
+        $main->fresh();
+        $main->load('oner');
+
+        $oner = $main->oner;
+        $this->assertEquals('Oner 1', $oner->name);
+
+        return $main;
+    }
+
     public function testUpdateRelationByUpdate()
     {
-        $main = $this->testCreate();
+        $main = $this->testCreateByNew();
 
         $oner = $main->oner;
         $onerAttributes = $oner->toArray();
@@ -51,7 +71,7 @@ class MainWithOnerTest extends TestCase
 
     public function testUpdateRelationByDelete()
     {
-        $main = $this->testCreate();
+        $main = $this->testCreateByNew();
 
         $mainAttributes = [
             'oner' => null,

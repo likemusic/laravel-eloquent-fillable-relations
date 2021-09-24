@@ -7,7 +7,7 @@ use Likemusic\LaravelFillableRelationsWithoutAutosave\Tests\Models\MorphOneOrMan
 
 class MainWithMorphManyersTest extends TestCase
 {
-    public function testCreateFirst()
+    public function testCreateFirstByNew()
     {
         $manyersAttributes1 = [
             [
@@ -24,6 +24,38 @@ class MainWithMorphManyersTest extends TestCase
         ]);
 
         $main->pushOrFail();
+        $main->fresh();
+        $main->load('manyers');
+
+        $manyers = $main->manyers;
+
+        $this->assertCount(2, $manyers);
+
+        $manyer1 = $manyers[0];
+        $this->assertEquals('Morph manyer 1 - for first main', $manyer1->name);
+
+        $manyer2 = $manyers[1];
+        $this->assertEquals('Morph manyer 2 - for first main', $manyer2->name);
+
+        return $main;
+    }
+
+    public function testCreateFirstByCreateWithRelations()
+    {
+        $manyersAttributes1 = [
+            [
+                'name' => 'Morph manyer 1 - for first main',
+            ],
+            [
+                'name' => 'Morph manyer 2 - for first main',
+            ],
+        ];
+
+        $main = MainWithMorphManyFirst::createWithRelations([
+            'name' => 'Main with morph fist',
+            'manyers' => $manyersAttributes1
+        ]);
+
         $main->fresh();
         $main->load('manyers');
 
@@ -75,13 +107,13 @@ class MainWithMorphManyersTest extends TestCase
 
     public function testCreateFirstAndSecond()
     {
-        $this->testCreateFirst();
+        $this->testCreateFirstByNew();
         $this->testCreateSecond();
     }
 
     public function testUpdateRelationByUpdateItem()
     {
-        $main = $this->testCreateFirst();
+        $main = $this->testCreateFirstByNew();
 
         $manyers = $main->manyers;
         $manyersAttributes = $manyers->toArray();
@@ -111,7 +143,7 @@ class MainWithMorphManyersTest extends TestCase
 
     public function testUpdateRelationByUpdateAndAddAndDeleteItems()
     {
-        $main = $this->testCreateFirst();
+        $main = $this->testCreateFirstByNew();
 
         $manyers = $main->manyers;
         $manyer = $manyers[0];
@@ -151,7 +183,7 @@ class MainWithMorphManyersTest extends TestCase
 
     public function testUpdateAndAddAndDelete()
     {
-        $main = $this->testCreateFirst();
+        $main = $this->testCreateFirstByNew();
 
         $manyers = $main->manyers;
         $manyer = $manyers[0];

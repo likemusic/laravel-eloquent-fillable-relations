@@ -1,7 +1,10 @@
 # Laravel Eloquent fillable relations
 
-Allows automatically fill model's relations by attributes without create them in database. Also adds `pushOrFail()`
-model's method that save model with relations (like `push()`-method) in one transaction.
+Allows automatically fill model's relations by attributes without create them in database. 
+
+Also adds `pushOrFail()`model's method that save model with relations (like `push()`-method) in one transaction.
+
+Also adds `createWithRelations($attributes)` to Builder that can be called as static method on Model.
 
 Currently, implemented relations:
 
@@ -89,6 +92,20 @@ Create or get owner model and fill with provided values and call `pushOrFail()`-
     // Save aggregate root with relations
     $main->pushOrFail();
     
+    // Or like below
+    $main2 = Main::createWithRelations([
+        'name' => 'Main 2',
+        'details' => [
+            [
+                'name' => 'detail 2-1',
+            ],
+            [
+                'name' => 'detail 2-2',
+            ],
+        ],
+    ]);
+    
+    
     
     $details = $main->details;
     $firstDetail = reset($details);
@@ -109,7 +126,7 @@ Create or get owner model and fill with provided values and call `pushOrFail()`-
     ]);
 
     // Save changes
-    $main->pusOrFail();
+    $main->pushOrFail();
     // Here:
     // - `detail 1` would be updated,
     // - `detail 2` would be deleted,

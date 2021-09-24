@@ -5,17 +5,16 @@ namespace Likemusic\LaravelFillableRelationsWithoutAutosave;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\Builder as CustomBuilder;
+use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\CreateWithRelationsTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\PushOrFailTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\HasOneOrMany\HasMany;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\HasOneOrMany\HasOne;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\MorphOneOrMany\MorphMany;
 
-//use Illuminate\Database\Eloquent\Relations\HasOne;
-//use Illuminate\Database\Eloquent\Relations\MorphMany;
-
 trait HasFillableRelationsTrait
 {
-    use PushOrFailTrait;
+    use PushOrFailTrait, CreateWithRelationsTrait;
 
     public function & getAttributeValueByRef($key)
     {
@@ -114,5 +113,10 @@ trait HasFillableRelationsTrait
     protected function newMorphMany(Builder $query, Model $parent, $type, $id, $localKey)
     {
         return new MorphMany($query, $parent, $type, $id, $localKey);
+    }
+
+    public function newEloquentBuilder($query)
+    {
+        return new CustomBuilder($query);
     }
 }

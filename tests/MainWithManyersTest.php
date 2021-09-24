@@ -6,7 +6,7 @@ use Likemusic\LaravelFillableRelationsWithoutAutosave\Tests\Models\OneOrMany\Man
 
 class MainWithManyersTest extends TestCase
 {
-    public function testCreate()
+    public function testCreateByNew()
     {
         $manyersAttributes1 = [
             [
@@ -39,9 +39,41 @@ class MainWithManyersTest extends TestCase
         return $main;
     }
 
+    public function testCreateByCreateWithRelations()
+    {
+        $manyersAttributes1 = [
+            [
+                'name' => 'manyer 1',
+            ],
+            [
+                'name' => 'manyer 2',
+            ],
+        ];
+
+        $main = MainWithManyers::createWithRelations([
+            'name' => 'Main 1',
+            'manyers' => $manyersAttributes1
+        ]);
+
+        $main->fresh();
+        $main->load('manyers');
+
+        $manyers = $main->manyers;
+
+        $this->assertCount(2, $manyers);
+
+        $manyer1 = $manyers[0];
+        $this->assertEquals('manyer 1', $manyer1->name);
+
+        $manyer2 = $manyers[1];
+        $this->assertEquals('manyer 2', $manyer2->name);
+
+        return $main;
+    }
+
     public function testUpdateRelationByUpdateItem()
     {
-        $main = $this->testCreate();
+        $main = $this->testCreateByNew();
 
         $manyers = $main->manyers;
         $manyersAttributes = $manyers->toArray();
@@ -71,7 +103,7 @@ class MainWithManyersTest extends TestCase
 
     public function testUpdateRelationByUpdateAndAddAndDeleteItems()
     {
-        $main = $this->testCreate();
+        $main = $this->testCreateByNew();
 
         $manyers = $main->manyers;
         $manyer = $manyers[0];
@@ -109,11 +141,9 @@ class MainWithManyersTest extends TestCase
         $this->assertEquals('Detail 1 - modified', $manyer->name);
     }
 
-
-
     public function testUpdateAndAddAndDelete()
     {
-        $main = $this->testCreate();
+        $main = $this->testCreateByNew();
 
         $manyers = $main->manyers;
         $manyer = $manyers[0];
