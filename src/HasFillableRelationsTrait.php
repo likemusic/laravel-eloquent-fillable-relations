@@ -9,13 +9,14 @@ use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\Builder a
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\PushOrFailTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\PushTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\SyncRelationsOrFailTrait;
+use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\SyncRelationsTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\HasOneOrMany\HasMany;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\HasOneOrMany\HasOne;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\MorphOneOrMany\MorphMany;
 
 trait HasFillableRelationsTrait
 {
-    use SyncRelationsOrFailTrait, PushOrFailTrait, PushTrait;
+    use SyncRelationsOrFailTrait, SyncRelationsTrait, PushOrFailTrait, PushTrait;
 
     public function & getAttributeValueByRef($key)
     {

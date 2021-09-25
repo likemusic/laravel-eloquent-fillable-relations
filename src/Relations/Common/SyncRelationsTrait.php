@@ -3,7 +3,6 @@
 namespace Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common;
 
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait SyncRelationsTrait
 {
@@ -72,21 +71,5 @@ trait SyncRelationsTrait
         }
 
         return true;
-    }
-
-
-    private function deleteDeletedRelations()
-    {
-        $deletedRelations = $this->deletedRelations;
-
-        foreach ($deletedRelations as $relationName => $relationIds) {
-            if (!$relationIds) {
-                continue;
-            }
-
-            /** @var Relation $relation */
-            $relation = $this->$relationName();
-            $relation->getRelated()->destroy($relationIds);
-        }
     }
 }

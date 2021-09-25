@@ -2,8 +2,25 @@
 
 namespace Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
+
 trait SyncRelationsCommonTrait
 {
+    private function deleteDeletedRelations()
+    {
+        $deletedRelations = $this->deletedRelations;
+
+        foreach ($deletedRelations as $relationName => $relationIds) {
+            if (!$relationIds) {
+                continue;
+            }
+
+            /** @var Relation $relation */
+            $relation = $this->$relationName();
+            $relation->getRelated()->destroy($relationIds);
+        }
+    }
+
     protected function beforeSyncRelations(): bool
     {
         return true;
