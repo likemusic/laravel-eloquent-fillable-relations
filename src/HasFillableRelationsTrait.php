@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\Builder as CustomBuilder;
-use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\CreateWithRelationsTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\PushOrFailTrait;
+use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\PushTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\HasOneOrMany\HasMany;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\HasOneOrMany\HasOne;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\MorphOneOrMany\MorphMany;
 
 trait HasFillableRelationsTrait
 {
-    use PushOrFailTrait, CreateWithRelationsTrait;
+    use PushOrFailTrait, PushTrait;
 
     public function & getAttributeValueByRef($key)
     {

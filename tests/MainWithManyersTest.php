@@ -50,7 +50,7 @@ class MainWithManyersTest extends TestCase
             ],
         ];
 
-        $main = MainWithManyers::createWithRelations([
+        $main = MainWithManyers::createWithRelationsOrFail([
             'name' => 'Main 1',
             'manyers' => $manyersAttributes1
         ]);

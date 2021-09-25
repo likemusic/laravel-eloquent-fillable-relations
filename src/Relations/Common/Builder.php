@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Builder extends LaravelBuilder
 {
-    public function createWithRelations(array $attributes = []): Model
+    public function createWithRelationsOrFail(array $attributes = []): Model
     {
-        return $this->getConnection()->transaction(function () use ($attributes) {
-            $model = $this->create($attributes);
-            $model->pushOrFail();
+        return tap($this->newModelInstance($attributes), function ($instance) {
+            return $instance->pushOrFail();
+        });
+    }
 
-            return $model;
+    public function createWithRelations(array $attributes)
+    {
+        return tap($this->newModelInstance($attributes), function ($instance) {
+            return $instance->push();
         });
     }
 }

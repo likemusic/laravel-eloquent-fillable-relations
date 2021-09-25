@@ -12,6 +12,7 @@ services:
       - mysql
     environment:
       XDEBUG_MODE: ${XDEBUG_MODE}
+      XDEBUG_SESSION: ${XDEBUG_SESSION}
       XDEBUG_CONFIG: "client_host=${XDEBUG_CLIENT_HOST} client_port=${XDEBUG_CLIENT_PORT} output_dir=${XDEBUG_OUTPUT_DIR}"
       PHP_IDE_CONFIG: serverName=${PHP_IDE_CONFIG_SERVER_NAME}
       COMPOSER_AUTH: ${COMPOSER_AUTH}
