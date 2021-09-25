@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 trait PushOrFailTrait
 {
-    use SyncRelationsOrFailTrait;
-
     private $deletedRelations = [];
 
     public function pushOrFail(): Model

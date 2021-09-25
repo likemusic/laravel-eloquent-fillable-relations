@@ -4,8 +4,6 @@ namespace Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common;
 
 trait PushTrait
 {
-    use SyncRelationsTrait;
-
     public function push()
     {
         if (! $this->save()) {
