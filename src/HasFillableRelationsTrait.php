@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\Builder as CustomBuilder;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\PushOrFailTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\PushTrait;
+use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\SyncRelationsCommonTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\SyncRelationsOrFailTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\Common\SyncRelationsTrait;
 use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\HasOneOrMany\HasMany;
@@ -16,7 +17,7 @@ use Likemusic\LaravelFillableRelationsWithoutAutosave\Relations\MorphOneOrMany\M
 
 trait HasFillableRelationsTrait
 {
-    use SyncRelationsOrFailTrait, SyncRelationsTrait, PushOrFailTrait, PushTrait;
+    use SyncRelationsCommonTrait, SyncRelationsOrFailTrait, SyncRelationsTrait, PushOrFailTrait, PushTrait;
 
     public function & getAttributeValueByRef($key)
     {

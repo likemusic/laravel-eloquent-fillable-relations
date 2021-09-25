@@ -7,8 +7,6 @@ use Likemusic\LaravelFillableRelationsWithoutAutosave\Exception;
 
 trait SyncRelationsOrFailTrait
 {
-    use SyncRelationsCommonTrait;
-
     private function syncRelationsOrFail()
     {
         if (!$this->beforeSyncRelations()) {

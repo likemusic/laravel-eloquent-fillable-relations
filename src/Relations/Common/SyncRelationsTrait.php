@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 trait SyncRelationsTrait
 {
-    use SyncRelationsCommonTrait;
-
     private function syncRelations(): bool
     {
         if (!$this->beforeSyncRelations()) {
