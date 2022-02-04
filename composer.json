@@ -3,7 +3,7 @@
     "description": "Allows automatically fill model's relations by attributes without create them in database. Also adds pushOrFail() model's method that save model with relations (like push()-method) in one transaction.",
     "type": "library",
     "require": {
-        "illuminate/database": "~6.0"
+        "illuminate/database": "^6.0 || ^7.0"
     },
     "require-dev": {
         "phpunit/phpunit": " ^7.5.15 || ^8.4 || ^9.3.3",
