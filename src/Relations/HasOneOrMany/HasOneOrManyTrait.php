@@ -15,6 +15,7 @@ trait HasOneOrManyTrait
      */
     protected function setForeignAttributesForCreate(Model $model)
     {
+        parent::setForeignAttributesForCreate($model);
         $this->updateForeignKeyByRef($model);
     }
 }
